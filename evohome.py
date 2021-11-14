@@ -39,6 +39,8 @@ if __name__ == "__main__":
                 if device['thermostat'] == "DOMESTIC_HOT_WATER":
                     device['setpoint'] = 55.0
                     device['name'] = "Hot Water"
+                if not device['activefaults']:
+                    device['activefaults'] = None
                 print([{"measurement":"Temperatures","fields":device}])
                 client.write_points([{"measurement":"Temperatures","fields":device}], database='EH-TEMPS')
 
