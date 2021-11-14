@@ -6,10 +6,12 @@ A docker-compose stack to collect temperature data from your Honeywell Evohome s
 
 
 # Get started
+
+Copy the local.env.example to local.env and edit the vars to match your evohome login
+
 Build the container:
 `docker build -t evohome .`
 
-modify the env vars in the docker-compose file for evohome to match your evohome login
 
 Then start docker-compose:
 `docker-compose up -d`
@@ -25,7 +27,7 @@ If you go to the explore menu, you should be able to search the database. This i
 http://localhost:3000/explore?orgId=1&left=%5B%22now-5y%22,%22now%22,%22InfluxDB%22,%7B%22datasource%22:%22InfluxDB%22,%22policy%22:%22default%22,%22resultFormat%22:%22time_series%22,%22orderByTime%22:%22ASC%22,%22tags%22:%5B%5D,%22groupBy%22:%5B%7B%22type%22:%22time%22,%22params%22:%5B%22$__interval%22%5D%7D,%7B%22type%22:%22fill%22,%22params%22:%5B%22null%22%5D%7D%5D,%22select%22:%5B%5B%7B%22type%22:%22field%22,%22params%22:%5B%22value%22%5D%7D,%7B%22type%22:%22mean%22,%22params%22:%5B%5D%7D%5D%5D,%22query%22:%22SELECT%20*%20from%20%5C%22Temperatures%5C%22%22,%22rawQuery%22:true%7D%5D
 
 
-The script requests a data update from Evohome once every 10 minutes. If you make this too frequent, you get rate-limited by Evohome.
+The script requests a data update from Evohome once every 5 minutes. If you make this too frequent, you get rate-limited by Evohome.
 
 
 # Optional external temperatures
