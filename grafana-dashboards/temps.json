@@ -1,40 +1,4 @@
 {
-  "__inputs": [
-    {
-      "name": "DS_INFLUXDB",
-      "label": "InfluxDB",
-      "description": "",
-      "type": "datasource",
-      "pluginId": "influxdb",
-      "pluginName": "InfluxDB"
-    }
-  ],
-  "__requires": [
-    {
-      "type": "grafana",
-      "id": "grafana",
-      "name": "Grafana",
-      "version": "7.4.0"
-    },
-    {
-      "type": "panel",
-      "id": "graph",
-      "name": "Graph",
-      "version": ""
-    },
-    {
-      "type": "datasource",
-      "id": "influxdb",
-      "name": "InfluxDB",
-      "version": "1.0.0"
-    },
-    {
-      "type": "panel",
-      "id": "stat",
-      "name": "Stat",
-      "version": ""
-    }
-  ],
   "annotations": {
     "list": [
       {
@@ -44,16 +8,24 @@
         "hide": true,
         "iconColor": "rgba(0, 211, 255, 1)",
         "name": "Annotations & Alerts",
+        "target": {
+          "limit": 100,
+          "matchAny": false,
+          "tags": [],
+          "type": "dashboard"
+        },
         "type": "dashboard"
       }
     ]
   },
   "editable": true,
+  "fiscalYearStartMonth": 0,
   "gnetId": null,
   "graphTooltip": 0,
-  "id": null,
-  "iteration": 1613028210882,
+  "id": 2,
+  "iteration": 1636888974881,
   "links": [],
+  "liveNow": false,
   "panels": [
     {
       "collapsed": false,
@@ -71,60 +43,138 @@
       "type": "row"
     },
     {
-      "aliasColors": {
-        "Recorded Temperature": "green",
-        "Requested Temperature": "purple",
-        "Temperatures.setpoint": "purple"
-      },
-      "bars": false,
-      "dashLength": 10,
-      "dashes": false,
       "datasource": "${DS_INFLUXDB}",
-      "decimals": 1,
       "description": "",
       "fieldConfig": {
         "defaults": {
-          "custom": {},
+          "color": {
+            "mode": "palette-classic"
+          },
+          "custom": {
+            "axisLabel": "",
+            "axisPlacement": "auto",
+            "barAlignment": 0,
+            "drawStyle": "line",
+            "fillOpacity": 50,
+            "gradientMode": "none",
+            "hideFrom": {
+              "legend": false,
+              "tooltip": false,
+              "viz": false
+            },
+            "lineInterpolation": "linear",
+            "lineWidth": 1,
+            "pointSize": 5,
+            "scaleDistribution": {
+              "type": "linear"
+            },
+            "showPoints": "never",
+            "spanNulls": false,
+            "stacking": {
+              "group": "A",
+              "mode": "none"
+            },
+            "thresholdsStyle": {
+              "mode": "off"
+            }
+          },
+          "mappings": [],
+          "thresholds": {
+            "mode": "absolute",
+            "steps": [
+              {
+                "color": "green",
+                "value": null
+              },
+              {
+                "color": "red",
+                "value": 80
+              }
+            ]
+          },
           "unit": "celsius"
         },
-        "overrides": []
+        "overrides": [
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Recorded Temperature"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "green",
+                  "mode": "fixed",
+                  "seriesBy": "last"
+                }
+              },
+              {
+                "id": "custom.fillOpacity",
+                "value": 30
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Setpoint"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "purple",
+                  "mode": "fixed"
+                }
+              },
+              {
+                "id": "custom.fillOpacity",
+                "value": 0
+              }
+            ]
+          },
+          {
+            "matcher": {
+              "id": "byName",
+              "options": "Outside Temperature"
+            },
+            "properties": [
+              {
+                "id": "color",
+                "value": {
+                  "fixedColor": "blue",
+                  "mode": "fixed"
+                }
+              },
+              {
+                "id": "custom.fillOpacity",
+                "value": 0
+              }
+            ]
+          }
+        ]
       },
-      "fill": 5,
-      "fillGradient": 0,
       "gridPos": {
         "h": 7,
         "w": 20,
         "x": 0,
         "y": 1
       },
-      "hiddenSeries": false,
       "id": 2,
-      "legend": {
-        "avg": false,
-        "current": true,
-        "max": false,
-        "min": false,
-        "rightSide": true,
-        "show": true,
-        "sideWidth": null,
-        "total": false,
-        "values": true
-      },
-      "lines": true,
-      "linewidth": 1,
-      "nullPointMode": "connected",
       "options": {
-        "alertThreshold": true
+        "legend": {
+          "calcs": [
+            "lastNotNull"
+          ],
+          "displayMode": "table",
+          "placement": "right"
+        },
+        "tooltip": {
+          "mode": "single"
+        }
       },
-      "percentage": false,
-      "pluginVersion": "7.4.0",
-      "pointradius": 2,
-      "points": false,
-      "renderer": "flot",
-      "seriesOverrides": [],
-      "spaceLength": 10,
-      "stack": false,
-      "steppedLine": false,
+      "pluginVersion": "8.2.3",
       "targets": [
         {
           "alias": "Recorded Temperature",
@@ -165,7 +215,7 @@
           "tags": []
         },
         {
-          "alias": "Requested Temperature",
+          "alias": "Setpoint",
           "groupBy": [
             {
               "params": [
@@ -241,47 +291,11 @@
           "tags": []
         }
       ],
-      "thresholds": [],
       "timeFrom": null,
-      "timeRegions": [],
       "timeShift": null,
       "title": "$zone",
-      "tooltip": {
-        "shared": true,
-        "sort": 0,
-        "value_type": "individual"
-      },
       "transparent": true,
-      "type": "graph",
-      "xaxis": {
-        "buckets": null,
-        "mode": "time",
-        "name": null,
-        "show": true,
-        "values": []
-      },
-      "yaxes": [
-        {
-          "format": "celsius",
-          "label": "",
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": true
-        },
-        {
-          "format": "short",
-          "label": null,
-          "logBase": 1,
-          "max": null,
-          "min": null,
-          "show": false
-        }
-      ],
-      "yaxis": {
-        "align": false,
-        "alignLevel": null
-      }
+      "type": "timeseries"
     },
     {
       "datasource": "${DS_INFLUXDB}",
@@ -291,7 +305,6 @@
           "color": {
             "mode": "thresholds"
           },
-          "custom": {},
           "mappings": [],
           "thresholds": {
             "mode": "absolute",
@@ -320,7 +333,7 @@
         "orientation": "auto",
         "reduceOptions": {
           "calcs": [
-            "mean"
+            "lastNotNull"
           ],
           "fields": "",
           "values": false
@@ -328,7 +341,7 @@
         "text": {},
         "textMode": "auto"
       },
-      "pluginVersion": "7.4.0",
+      "pluginVersion": "8.2.3",
       "targets": [
         {
           "groupBy": [
@@ -371,7 +384,7 @@
       ],
       "timeFrom": null,
       "timeShift": null,
-      "title": "Internal Mean",
+      "title": "Internal Current",
       "type": "stat"
     },
     {
@@ -382,7 +395,6 @@
           "color": {
             "mode": "thresholds"
           },
-          "custom": {},
           "mappings": [],
           "thresholds": {
             "mode": "absolute",
@@ -419,7 +431,7 @@
         "text": {},
         "textMode": "auto"
       },
-      "pluginVersion": "7.4.0",
+      "pluginVersion": "8.2.3",
       "targets": [
         {
           "groupBy": [
@@ -462,7 +474,7 @@
       ],
       "timeFrom": null,
       "timeShift": null,
-      "title": "Outside Mean",
+      "title": "Outside Avg",
       "type": "stat"
     },
     {
@@ -473,7 +485,6 @@
           "color": {
             "mode": "thresholds"
           },
-          "custom": {},
           "mappings": [],
           "thresholds": {
             "mode": "absolute",
@@ -510,7 +521,7 @@
         "text": {},
         "textMode": "auto"
       },
-      "pluginVersion": "7.4.0",
+      "pluginVersion": "8.2.3",
       "targets": [
         {
           "groupBy": [
@@ -564,7 +575,6 @@
           "color": {
             "mode": "thresholds"
           },
-          "custom": {},
           "mappings": [],
           "thresholds": {
             "mode": "absolute",
@@ -601,7 +611,7 @@
         "text": {},
         "textMode": "auto"
       },
-      "pluginVersion": "7.4.0",
+      "pluginVersion": "8.2.3",
       "targets": [
         {
           "groupBy": [
@@ -655,7 +665,6 @@
           "color": {
             "mode": "thresholds"
           },
-          "custom": {},
           "mappings": [],
           "thresholds": {
             "mode": "absolute",
@@ -692,7 +701,7 @@
         "text": {},
         "textMode": "auto"
       },
-      "pluginVersion": "7.4.0",
+      "pluginVersion": "8.2.3",
       "targets": [
         {
           "groupBy": [
@@ -746,7 +755,6 @@
           "color": {
             "mode": "thresholds"
           },
-          "custom": {},
           "mappings": [],
           "thresholds": {
             "mode": "absolute",
@@ -783,7 +791,7 @@
         "text": {},
         "textMode": "auto"
       },
-      "pluginVersion": "7.4.0",
+      "pluginVersion": "8.2.3",
       "targets": [
         {
           "groupBy": [
@@ -830,15 +838,33 @@
       "type": "stat"
     }
   ],
-  "refresh": "10s",
-  "schemaVersion": 27,
+  "refresh": "5m",
+  "schemaVersion": 31,
   "style": "dark",
   "tags": [],
   "templating": {
     "list": [
       {
         "allValue": null,
-        "current": {},
+        "current": {
+          "selected": true,
+          "text": [
+            "Berging",
+            "Bevers",
+            "Hal-Keuken",
+            "Scouts",
+            "Toilet",
+            "Welpen"
+          ],
+          "value": [
+            "Berging",
+            "Bevers",
+            "Hal-Keuken",
+            "Scouts",
+            "Toilet",
+            "Welpen"
+          ]
+        },
         "datasource": "${DS_INFLUXDB}",
         "definition": "",
         "description": null,
@@ -855,7 +881,6 @@
         "skipUrlSync": false,
         "sort": 1,
         "tagValuesQuery": "",
-        "tags": [],
         "tagsQuery": "",
         "type": "query",
         "useTags": false
@@ -875,6 +900,7 @@
         "name": "DS_INFLUXDB",
         "options": [],
         "query": "influxdb",
+        "queryValue": "",
         "refresh": 1,
         "regex": "",
         "skipUrlSync": false,
@@ -883,12 +909,12 @@
     ]
   },
   "time": {
-    "from": "now-7d",
+    "from": "now-6h",
     "to": "now"
   },
   "timepicker": {},
   "timezone": "",
   "title": "Temperatures",
   "uid": "k7-KnB-Gk",
-  "version": 2
+  "version": 3
 }
