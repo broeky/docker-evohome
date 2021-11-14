@@ -63,4 +63,4 @@ if __name__ == "__main__":
             print("No Database Connection")
         except AuthenticationError as e:
             print("API overload error - sleeping 5 mins before retry")
-        time.sleep(300.0 - ((time.time() - starttime) % 300.0))
+        time.sleep(240.0 - ((time.time() - starttime) % 240.0))
