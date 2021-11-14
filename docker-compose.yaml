@@ -36,12 +36,10 @@ services:
     networks:
       - evohome
     restart: unless-stopped
+    env_file:
+      - ./local.env
     environment:
-      - EH-USERNAME=eelco.bel@scoutingjanhilgers.nl
-      - EH-PASSWORD=Ahgei2oo
       - OW=true
-      - OW-API-KEY=2e78e4b673c63c5dc1bbaacb60179ed7
-      - OW-CITY=Ede,nl
         #      - HEALTHCHECKS-IO=https://hc-ping.com/XXXX-YYYY-ZZZZ
 networks:
   evohome:
