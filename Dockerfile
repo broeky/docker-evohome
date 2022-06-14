@@ -7,6 +7,6 @@ RUN git clone https://github.com/Hout/evohome-client.git
 
 FROM python:3-alpine
 COPY --from=gitty evohome-client/ /evohome-client/
-RUN pip install ./evohome-client influxdb
+RUN pip3 install ./evohome-client influxdb
 COPY evohome.py /tmp/
 CMD ["python", "/tmp/evohome.py"]
