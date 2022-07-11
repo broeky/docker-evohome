@@ -64,8 +64,12 @@ if __name__ == "__main__":
                 print("pinging healthchecks")
                 requests.get(healthchecks)
 
+          except:
+            print("error of some sort")
         # except ConnectionError as e:
         #    print("No Database Connection")
         # except AuthenticationError as e:
         #    print("API overload error - sleeping 5 mins before retry")
+        
+        print("end")
         
