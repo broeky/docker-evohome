@@ -11,7 +11,7 @@ password = os.environ['EH-PASSWORD']
 
 starttime = time.time()
 print(starttime)
-time.sleep(1800)
+
 if __name__ == "__main__":
     all_ok = True
     # Connect to Influxdb
@@ -63,13 +63,9 @@ if __name__ == "__main__":
                 healthchecks = os.environ['HEALTHCHECKS-IO']
                 print("pinging healthchecks")
                 requests.get(healthchecks)
-
-          except:
+            time.sleep(1800)
+        except:
             print("error of some sort")
-        # except ConnectionError as e:
-        #    print("No Database Connection")
-        # except AuthenticationError as e:
-        #    print("API overload error - sleeping 5 mins before retry")
-        
-        print("end")
-        
+            
+
+               
