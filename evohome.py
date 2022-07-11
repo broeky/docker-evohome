@@ -10,6 +10,7 @@ username = os.environ['EH-USERNAME']
 password = os.environ['EH-PASSWORD']
 
 starttime = time.time()
+print(starttime)
 if __name__ == "__main__":
     all_ok = True
     # Connect to Influxdb
@@ -22,9 +23,9 @@ if __name__ == "__main__":
     try:
         eclient = EvohomeClient({username}, {password})
     except AuthenticationError as e:
-        print("API overload error - will trsleeping 5 mins before container restart")
+        print("API overload error - will try sleeping for 5 mins before container restart")
         time.sleep(300)
-        print("Sleep slept")
+        print("Retrying")
         all_ok = False
 
     while all_ok:
@@ -59,10 +60,11 @@ if __name__ == "__main__":
             # Inform Healthchecks.io
             if "HEALTHCHECKS-IO" in os.environ:
                 healthchecks = os.environ['HEALTHCHECKS-IO']
+                print("pinging healthchecks")
                 requests.get(healthchecks)
 
-        except ConnectionError as e:
-            print("No Database Connection")
-        except AuthenticationError as e:
-            print("API overload error - sleeping 5 mins before retry")
-        time.sleep(240.0 - ((time.time() - starttime) % 240.0))
+        # except ConnectionError as e:
+        #    print("No Database Connection")
+        # except AuthenticationError as e:
+        #    print("API overload error - sleeping 5 mins before retry")
+        time.sleep(1800)
