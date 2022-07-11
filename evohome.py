@@ -11,6 +11,7 @@ password = os.environ['EH-PASSWORD']
 
 starttime = time.time()
 print(starttime)
+time.sleep(1800)
 if __name__ == "__main__":
     all_ok = True
     # Connect to Influxdb
@@ -67,4 +68,4 @@ if __name__ == "__main__":
         #    print("No Database Connection")
         # except AuthenticationError as e:
         #    print("API overload error - sleeping 5 mins before retry")
-        time.sleep(1800)
+        
