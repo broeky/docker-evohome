@@ -64,8 +64,9 @@ if __name__ == "__main__":
                 print("pinging healthchecks")
                 requests.get(healthchecks)
             time.sleep(1800)
-        except:
-            print("error of some sort")
+        except Exception as e:
+            print(e)
+           
             
 
                
