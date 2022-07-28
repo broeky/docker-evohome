@@ -66,6 +66,7 @@ if __name__ == "__main__":
             time.sleep(1800)
         except Exception as e:
             print(e)
+            time.sleep(1800)
            
             
 
